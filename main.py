@@ -1,4 +1,4 @@
-from pade.misc.utility import display_message, start_loop
+from pade.misc.utility import display_message,start_loop
 from pade.core.agent import Agent
 from pade.acl.messages import ACLMessage
 from pade.acl.aid import AID
@@ -74,19 +74,18 @@ def __initializeWorld__():
 
 def main():
 
-    AMS = {'name' : 'localhost', 'port' : 8000}
-    set_ams(AMS['name'], AMS['port'])
-
     agentes = list()
+    port = int(argv[1])
 
-    a = AgenteSistemaAutonomo(AID(name='autonomo'))
-    a.ams = AMS
-    agentes.append(a)
+    agent_name = 'agent_hello_{}@localhost:{}'.format(port, port)
+    agente_hello = AgenteSistemaAutonomo(AID(name=agent_name))
+    
+    agentes.append(agente_hello)
 
     start_loop(agentes)
 
 if __name__ == '__main__':
-    
+    __initializeWorld__()
     main()
 
    
