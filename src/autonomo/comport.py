@@ -11,6 +11,8 @@ class CompRequest(FipaRequestProtocol):
     """Comportamento FIPA Request
     do agente Horario"""
     def __init__(self, agent):
+        print('Iniciado')
+
         super(CompRequest, self).__init__(agent=agent,
                                           message=None,
                                           is_initiator=False)

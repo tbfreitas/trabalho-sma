@@ -1,4 +1,5 @@
 from pade.misc.utility import display_message,start_loop
+
 from pade.core.agent import Agent
 from pade.acl.messages import ACLMessage
 from pade.acl.aid import AID
@@ -8,7 +9,9 @@ from pade.behaviours.protocols import TimedBehaviour
 import random
 
 from sys import argv
-from agent_1 import AgenteSistemaAutonomo
+from src.autonomo.index import AgenteSistemaAutonomo
+from src.conforto.index import AgenteSistemaConforto
+from src.sensor.index import Sensors
 
 def __initializeWorld__():
     matrizCaminho = [] 
@@ -74,18 +77,21 @@ def __initializeWorld__():
 
 def main():
 
-    agentes = list()
-    port = int(argv[1])
+    caminho = __initializeWorld__()
 
-    agent_name = 'agent_hello_{}@localhost:{}'.format(port, port)
-    agente_hello = AgenteSistemaAutonomo(AID(name=agent_name))
+    agentes = list()
+
+    agente_autonomo = AgenteSistemaAutonomo(AID(name='autonomo'),caminho)
+    agente_conforto = AgenteSistemaConforto(AID(name='conforto'),caminho)
+    agent_sensor = Sensors(AID(name='sensor'),caminho)
     
-    agentes.append(agente_hello)
+    agentes.append(agent_sensor)
+    agentes.append(agente_autonomo)
+    agentes.append(agente_conforto)
 
     start_loop(agentes)
 
 if __name__ == '__main__':
-    __initializeWorld__()
     main()
 
    
