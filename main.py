@@ -19,7 +19,7 @@ def __initializeWorld__():
     indexesBarricadas = [] # indexes das barricadas
     i = 0
     # sorteando os index de celulas com buraco
-    while i < 20:   
+    while i < 5:   
         valCol = random.randint(0, 6)
         valLin = random.randint(0, 6)
 
@@ -74,7 +74,6 @@ def __initializeWorld__():
         j+=1 
     
     # Inicializando o onibus na matriz [0,0]
-    matrizCaminho[4][4] = 'I'
     for m in matrizCaminho:
         print(m)
     return matrizCaminho
@@ -94,7 +93,7 @@ def main():
     agentes.append(agente_conforto)
 
     start_loop(agentes)
-
+    
 if __name__ == '__main__':
     main()
 

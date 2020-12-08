@@ -10,27 +10,14 @@ import json
 
 # update no caminho
 
-# Pegando o indice atual do onibus
-def getAtualIndex(caminho):
-    for idx, col in enumerate(caminho):
-        for idxlin, lin in enumerate(col):
-            if(lin == 'I'):
-                    return [idx,idxlin]
-
 class AgenteSistemaAutonomo(Agent):
     def __init__(self, aid,caminho):
 
         super(AgenteSistemaAutonomo, self).__init__(aid=aid, debug=False)
 
-        indiceAtual = getAtualIndex(caminho)
-
-        message = ACLMessage(ACLMessage.REQUEST)
-        message.set_protocol(ACLMessage.FIPA_REQUEST_PROTOCOL)
-        message.add_receiver(AID(name='sensor'))
-        message.set_content(json.dumps(indiceAtual))
-
-        self.comport_request = CompRequest2(self, message)
-        self.comport_temp = ComportTemporal(self, 2.0, message)
+        self.comport_request = CompRequest2(self,caminho)
+        self.comport_temp = ComportTemporal(self, 5.0 ,caminho)
         
         self.behaviours.append(self.comport_request)
         self.behaviours.append(self.comport_temp)
+    
