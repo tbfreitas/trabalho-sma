@@ -4,21 +4,20 @@ from pade.acl.messages import ACLMessage
 from pade.acl.aid import AID
 from pade.behaviours.protocols import FipaRequestProtocol
 from pade.behaviours.protocols import TimedBehaviour
-from src.autonomo.message import message_autonomo
+from src.autonomo.message import message_conforto
 import json
 
 from datetime import datetime
 
-
-class ComportTemporal(TimedBehaviour):
+class ComportConfortoTemporal(TimedBehaviour):
     """Comportamento FIPA Request
     do agente Relogio"""
     def __init__(self, agent, time, caminho):
-        super(ComportTemporal, self).__init__(agent, time)
+        super(ComportConfortoTemporal, self).__init__(agent, time)
         self.caminho = caminho
        
     def on_time(self):
-        super(ComportTemporal, self).on_time()
-        self.agent.send(message_autonomo)
+        super(ComportConfortoTemporal, self).on_time()
+        self.agent.send(message_conforto)
 
  

@@ -5,8 +5,7 @@ from pade.acl.aid import AID
 from pade.behaviours.protocols import FipaRequestProtocol
 from pade.behaviours.protocols import TimedBehaviour
 import random
-
-from src.autonomo.message import message_novo 
+from src.autonomo.message import updateIndex
 import json
 
 from datetime import datetime
@@ -33,14 +32,11 @@ class CompRequest2(FipaRequestProtocol):
 
     def handle_inform(self, message):
         disponiveis = json.loads(message.content)
-
-        if json.loads(message.content) == [6,6]:
-            self.agent.pause_agent()
-
  
         disp = disponiveis['disponiveis']
-        print('valor disponiveis' , disp)
+        print('valor disponivel' , disp)
         melhor = decideMelhorCaminho(disp)
         print('Decidi andar para o ', melhor)
-        message_novo.set_content(json.dumps(melhor))
+        # message_novo.set_content(json.dumps(melhor))
+        updateIndex(json.dumps(melhor))
         display_message(self.agent.aid.localname, message.content)

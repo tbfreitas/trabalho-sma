@@ -36,31 +36,47 @@ def getNextValues(caminho,indexes):
     mapCaminho = {
         "disponiveis": [],
         "buracos": [],
+        "barricadas" : []
     }
 
     if rightValue <= 6:
-        if caminho[rightValue][colAtual] == ' ' or caminho[rightValue][colAtual] == 'I':
+        if caminho[rightValue][colAtual] == ' ':
             mapCaminho['disponiveis'].append([rightValue,colAtual])
         else:
-            mapCaminho['buracos'].append([rightValue,colAtual])
+            if caminho[rightValue][colAtual] == '0':
+                mapCaminho['buracos'].append([rightValue,colAtual])
+            else:
+                mapCaminho['barricadas'].append([rightValue,colAtual])
+
 
     if leftValue >= 0:
-        if caminho[leftValue][colAtual] == ' ' or caminho[linhaAtual][topValue] == 'I':
+        if caminho[leftValue][colAtual] == ' ':
             mapCaminho['disponiveis'].append([leftValue, colAtual])
         else:
-            mapCaminho['buracos'].append([leftValue, colAtual])
+            if caminho[linhaAtual][topValue] == '0':
+                mapCaminho['buracos'].append([leftValue, colAtual])
+            else:
+                mapCaminho['barricadas'].append([leftValue, colAtual])
+
 
     if topValue >= 0:
-        if caminho[linhaAtual][topValue] == ' ' or caminho[linhaAtual][topValue] == 'I':
+        if caminho[linhaAtual][topValue] == ' ':
             mapCaminho['disponiveis'].append([linhaAtual, topValue])
         else:
-            mapCaminho['buracos'].append([linhaAtual, topValue])
+            if caminho[linhaAtual][topValue] == '0':
+                mapCaminho['buracos'].append([linhaAtual, topValue])
+            else:
+                mapCaminho['barricadas'].append([linhaAtual, topValue])
+
 
     if bottomValue <= 6:
-        if caminho[linhaAtual][bottomValue] == ' ' or caminho[linhaAtual][bottomValue] == 'I':
+        if caminho[linhaAtual][bottomValue] == ' ':
             mapCaminho['disponiveis'].append([linhaAtual, bottomValue])
         else:
-            mapCaminho['buracos'].append([linhaAtual, bottomValue])
+            if caminho[linhaAtual][bottomValue] == '0':
+                mapCaminho['buracos'].append([linhaAtual, bottomValue])
+            else:
+                mapCaminho['barricadas'].append([linhaAtual, bottomValue])
 
     return mapCaminho    
 
@@ -77,10 +93,11 @@ class CompRequest(FipaRequestProtocol):
 
     def handle_request(self, message):
         super(CompRequest, self).handle_request(message)
-      
-        printaLocAtual(self.caminho, self.locAtual, json.loads(message.content))
-        self.locAtual = json.loads(message.content)
 
+        if "conforto" not in message.sender.name:
+            printaLocAtual(self.caminho, self.locAtual, json.loads(message.content))
+       
+        self.locAtual = json.loads(message.content)
         proximosValores = getNextValues(self.caminho, json.loads(message.content))
         display_message(self.agent.aid.localname, 'Mensagem request recebida pelo sensor')
         reply = message.create_reply()
