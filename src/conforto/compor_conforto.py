@@ -13,7 +13,7 @@ from datetime import datetime
 class ComportConforto(FipaRequestProtocol):
     """Comportamento FIPA Request
     do agente Relogio"""
-    def __init__(self, agent, caminho):
+    def __init__(self, agent):
         super(ComportConforto, self).__init__(agent=agent,
                                            is_initiator=True)
         self.arCondicionado = False
@@ -25,6 +25,7 @@ class ComportConforto(FipaRequestProtocol):
         bur = obstaculos['buracos']
         bar = obstaculos['barricadas']
         
+        print('bar', bar)
         if not bar:
             print("=>Não tem barricada próxima, portanto:")
             if self.arCondicionado == False:

@@ -12,9 +12,8 @@ from datetime import datetime
 class ComportConfortoTemporal(TimedBehaviour):
     """Comportamento FIPA Request
     do agente Relogio"""
-    def __init__(self, agent, time, caminho):
+    def __init__(self, agent, time):
         super(ComportConfortoTemporal, self).__init__(agent, time)
-        self.caminho = caminho
        
     def on_time(self):
         super(ComportConfortoTemporal, self).on_time()

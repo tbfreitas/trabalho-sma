@@ -19,7 +19,7 @@ def __initializeWorld__():
     indexesBarricadas = [] # indexes das barricadas
     i = 0
     # sorteando os index de celulas com buraco
-    while i < 5:   
+    while i < 4:   
         valCol = random.randint(0, 6)
         valLin = random.randint(0, 6)
 
@@ -83,10 +83,10 @@ def main():
     caminho = __initializeWorld__()
 
     agentes = list()
-
-    agente_autonomo = AgenteSistemaAutonomo(AID(name='autonomo'),caminho)
-    agente_conforto = AgenteSistemaConforto(AID(name='conforto'),caminho)
+    
     agent_sensor = Sensors(AID(name='sensor'),caminho)
+    agente_autonomo = AgenteSistemaAutonomo(AID(name='autonomo'))
+    agente_conforto = AgenteSistemaConforto(AID(name='conforto'))
     
     agentes.append(agent_sensor)
     agentes.append(agente_autonomo)

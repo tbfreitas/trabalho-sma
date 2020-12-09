@@ -40,7 +40,7 @@ def getNextValues(caminho,indexes):
     }
 
     if rightValue <= 6:
-        if caminho[rightValue][colAtual] == ' ':
+        if caminho[rightValue][colAtual] == ' ' or caminho[rightValue][colAtual] == 'I':
             mapCaminho['disponiveis'].append([rightValue,colAtual])
         else:
             if caminho[rightValue][colAtual] == '0':
@@ -50,7 +50,7 @@ def getNextValues(caminho,indexes):
 
 
     if leftValue >= 0:
-        if caminho[leftValue][colAtual] == ' ':
+        if caminho[leftValue][colAtual] == ' ' or caminho[leftValue][colAtual] == 'I':
             mapCaminho['disponiveis'].append([leftValue, colAtual])
         else:
             if caminho[linhaAtual][topValue] == '0':
@@ -60,7 +60,7 @@ def getNextValues(caminho,indexes):
 
 
     if topValue >= 0:
-        if caminho[linhaAtual][topValue] == ' ':
+        if caminho[linhaAtual][topValue] == ' ' or caminho[linhaAtual][topValue] == 'I':
             mapCaminho['disponiveis'].append([linhaAtual, topValue])
         else:
             if caminho[linhaAtual][topValue] == '0':
@@ -70,7 +70,7 @@ def getNextValues(caminho,indexes):
 
 
     if bottomValue <= 6:
-        if caminho[linhaAtual][bottomValue] == ' ':
+        if caminho[linhaAtual][bottomValue] == ' ' or caminho[linhaAtual][bottomValue] == 'I': 
             mapCaminho['disponiveis'].append([linhaAtual, bottomValue])
         else:
             if caminho[linhaAtual][bottomValue] == '0':
@@ -79,7 +79,7 @@ def getNextValues(caminho,indexes):
                 mapCaminho['barricadas'].append([linhaAtual, bottomValue])
 
     # Se não houver caminho disponível, fica parado
-    if not mapCaminho['disponiveis']:
+    if not mapCaminho['disponiveis'] or (linhaAtual == 6 and colAtual == 6):
         mapCaminho['disponiveis'] = [[linhaAtual, colAtual]]
 
     return mapCaminho    
@@ -98,11 +98,12 @@ class CompRequest(FipaRequestProtocol):
     def handle_request(self, message):
         super(CompRequest, self).handle_request(message)
 
+        proximosValores = getNextValues(self.caminho, json.loads(message.content))
+
         if "conforto" not in message.sender.name:
             printaLocAtual(self.caminho, self.locAtual, json.loads(message.content))
             self.locAtual = json.loads(message.content)
        
-        proximosValores = getNextValues(self.caminho, json.loads(message.content))
         # display_message(self.agent.aid.localname, 'Mensagem request recebida pelo sensor')
         reply = message.create_reply()
         reply.set_performative(ACLMessage.INFORM)

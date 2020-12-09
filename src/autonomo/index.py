@@ -11,12 +11,12 @@ import json
 # update no caminho
 
 class AgenteSistemaAutonomo(Agent):
-    def __init__(self, aid,caminho):
+    def __init__(self, aid):
 
         super(AgenteSistemaAutonomo, self).__init__(aid=aid, debug=False)
 
-        self.comport_request = CompRequest2(self,caminho)
-        self.comport_temp = ComportTemporal(self, 5.0 ,caminho)
+        self.comport_request = CompRequest2(self)
+        self.comport_temp = ComportTemporal(self, 5.0)
         
         self.behaviours.append(self.comport_request)
         self.behaviours.append(self.comport_temp)
