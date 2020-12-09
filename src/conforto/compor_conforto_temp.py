@@ -10,8 +10,6 @@ import json
 from datetime import datetime
 
 class ComportConfortoTemporal(TimedBehaviour):
-    """Comportamento FIPA Request
-    do agente Relogio"""
     def __init__(self, agent, time):
         super(ComportConfortoTemporal, self).__init__(agent, time)
        

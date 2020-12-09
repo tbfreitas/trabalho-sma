@@ -11,8 +11,6 @@ import json
 from datetime import datetime
 
 class ComportConforto(FipaRequestProtocol):
-    """Comportamento FIPA Request
-    do agente Relogio"""
     def __init__(self, agent):
         super(ComportConforto, self).__init__(agent=agent,
                                            is_initiator=True)

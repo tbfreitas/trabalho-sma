@@ -86,8 +86,6 @@ def getNextValues(caminho,indexes):
 
 
 class CompRequest(FipaRequestProtocol):
-    """Comportamento FIPA Request
-    do agente Horario"""
     def __init__(self, agent, caminho):
         super(CompRequest, self).__init__(agent=agent,
                                           message=None,
