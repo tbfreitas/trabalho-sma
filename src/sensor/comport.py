@@ -78,6 +78,10 @@ def getNextValues(caminho,indexes):
             else:
                 mapCaminho['barricadas'].append([linhaAtual, bottomValue])
 
+    # Se não houver caminho disponível, fica parado
+    if not mapCaminho['disponiveis']:
+        mapCaminho['disponiveis'] = [[linhaAtual, colAtual]]
+
     return mapCaminho    
 
 
@@ -96,10 +100,10 @@ class CompRequest(FipaRequestProtocol):
 
         if "conforto" not in message.sender.name:
             printaLocAtual(self.caminho, self.locAtual, json.loads(message.content))
+            self.locAtual = json.loads(message.content)
        
-        self.locAtual = json.loads(message.content)
         proximosValores = getNextValues(self.caminho, json.loads(message.content))
-        display_message(self.agent.aid.localname, 'Mensagem request recebida pelo sensor')
+        # display_message(self.agent.aid.localname, 'Mensagem request recebida pelo sensor')
         reply = message.create_reply()
         reply.set_performative(ACLMessage.INFORM)
         reply.set_content(json.dumps(proximosValores))

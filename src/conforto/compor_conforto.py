@@ -61,4 +61,4 @@ class ComportConforto(FipaRequestProtocol):
         else:
             self.janelaAberta = True
 
-        display_message(self.agent.aid.localname, message.content)
+        # display_message(self.agent.aid.localname, message.content)

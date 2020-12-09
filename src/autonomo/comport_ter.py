@@ -4,7 +4,7 @@ from pade.acl.messages import ACLMessage
 from pade.acl.aid import AID
 from pade.behaviours.protocols import FipaRequestProtocol
 from pade.behaviours.protocols import TimedBehaviour
-from src.autonomo.message import message_autonomo
+from src.message import message_autonomo
 import json
 
 from datetime import datetime

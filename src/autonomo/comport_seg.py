@@ -5,7 +5,7 @@ from pade.acl.aid import AID
 from pade.behaviours.protocols import FipaRequestProtocol
 from pade.behaviours.protocols import TimedBehaviour
 import random
-from src.autonomo.message import updateIndex
+from src.message import updateIndex
 import json
 
 from datetime import datetime
@@ -13,7 +13,7 @@ from datetime import datetime
 def decideMelhorCaminho(disp):
     
     maior = []
-    indexesMaior = 0
+    indexesMaior = -1
     for d in disp:
         if d[0] + d[1] > indexesMaior:
             indexesMaior = d[0] + d[1]
@@ -39,4 +39,4 @@ class CompRequest2(FipaRequestProtocol):
         print('Decidi andar para o ', melhor)
         # message_novo.set_content(json.dumps(melhor))
         updateIndex(json.dumps(melhor))
-        display_message(self.agent.aid.localname, message.content)
+        # display_message(self.agent.aid.localname, message.content)
