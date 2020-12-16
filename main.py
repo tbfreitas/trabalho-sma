@@ -13,44 +13,50 @@ from src.autonomo.index import AgenteSistemaAutonomo
 from src.conforto.index import AgenteSistemaConforto
 from src.sensor.index import Sensors
 
-def __initializeWorld__():
+def __initializeWorld__(sortear):
     matrizCaminho = [] 
     indexesBuracos = [] # indexes dos buracos
     indexesBarricadas = [] # indexes das barricadas
     i = 0
+
     # sorteando os index de celulas com buraco
-    while i < 4:   
-        valCol = random.randint(0, 6)
-        valLin = random.randint(0, 6)
-
-        #  verificando se já existem aqueles indexesBuracos salvos 
-        achou = [valCol,valLin] in indexesBuracos
-        #  nao pode ter buraco no [0,0] nem no [6,6]
-        if achou == False and (valCol + valLin != 0) and (valCol * valLin != 36): 
-            tmp = []
-            tmp.append(valCol)
-            tmp.append(valLin)
-            indexesBuracos.append(tmp)
-            i+=1
+    if(sortear):
     
-    i=0
+        while i < 4:   
+            valCol = random.randint(0, 6)
+            valLin = random.randint(0, 6)
+
+            #  verificando se já existem aqueles indexesBuracos salvos 
+            achou = [valCol,valLin] in indexesBuracos
+            #  nao pode ter buraco no [0,0] nem no [6,6]
+            if achou == False and (valCol + valLin != 0) and (valCol * valLin != 36): 
+                tmp = []
+                tmp.append(valCol)
+                tmp.append(valLin)
+                indexesBuracos.append(tmp)
+                i+=1
+        
+        i=0
     # sorteando os indexes das barricadas
-    while i < 3:
-        valColBar = random.randint(0, 6)
-        valLinBar = random.randint(0, 6)
+        while i < 3:
+            valColBar = random.randint(0, 6)
+            valLinBar = random.randint(0, 6)
 
-        #  verificando se já existem aqueles indexesBuracos salvos 
-        achouIndexBuraco = [valColBar,valLinBar] in indexesBuracos
-        achouIndexBarrica = [valColBar,valLinBar] in indexesBarricadas
-        #  nao pode ter buraco no [0,0] nem no [6,6]
-        if achouIndexBuraco == False and achouIndexBarrica == False and (valColBar + valLinBar != 0) and (valColBar * valLinBar != 36): 
-            tmp = []
-            tmp.append(valColBar)
-            tmp.append(valLinBar)
-            indexesBarricadas.append(tmp)
-            i+=1
-
+            #  verificando se já existem aqueles indexesBuracos salvos 
+            achouIndexBuraco = [valColBar,valLinBar] in indexesBuracos
+            achouIndexBarrica = [valColBar,valLinBar] in indexesBarricadas
+            #  nao pode ter buraco no [0,0] nem no [6,6]
+            if achouIndexBuraco == False and achouIndexBarrica == False and (valColBar + valLinBar != 0) and (valColBar * valLinBar != 36): 
+                tmp = []
+                tmp.append(valColBar)
+                tmp.append(valLinBar)
+                indexesBarricadas.append(tmp)
+                i+=1
+    else:
+        indexesBarricadas = [[2,2],[4,3],[6,0]]
+        indexesBuracos = [[2,0],[2,1],[4,3]]
     # preenchendo a matriz de caminho
+    
     j = 0
     while j < 7:
         k = 0
@@ -72,15 +78,16 @@ def __initializeWorld__():
             k+=1
         matrizCaminho.append(linha)
         j+=1 
-    
+
     # Inicializando o onibus na matriz [0,0]
+    print('CAMINHO INICIALIZADO')
     for m in matrizCaminho:
         print(m)
     return matrizCaminho
 
 def main():
 
-    caminho = __initializeWorld__()
+    caminho = __initializeWorld__(False)
 
     agentes = list()
     

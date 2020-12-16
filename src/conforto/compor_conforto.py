@@ -23,7 +23,7 @@ class ComportConforto(FipaRequestProtocol):
         bur = obstaculos['buracos']
         bar = obstaculos['barricadas']
         
-        print('bar', bar)
+        print('Verificando se tem barricada próxima:', bar)
         if not bar:
             print("=>Não tem barricada próxima, portanto:")
             if self.arCondicionado == False:
@@ -37,6 +37,7 @@ class ComportConforto(FipaRequestProtocol):
             else:
                 print("==> Ligando o ar condicionado")
 
+        print('Verificando se tem buraco próximo: ', bar)
         if not bur:
             print("=>Não tem buraco próximo, portanto:")
             if self.janelaAberta == False:
