@@ -19,7 +19,7 @@ def printaLocAtual(caminho, locAtual, locNovo):
     caminho[linhaAtual][colAtual] = ' '
     caminho[linhaNovo][colNovo] = 'I'
 
-    print('================================================')
+    print('================================================================================================== \n')
     for c in caminho:
         print(c)
 
@@ -84,7 +84,7 @@ def getNextValues(caminho,indexes):
         mapCaminho['disponiveis'] = [[linhaAtual, colAtual]]
 
     if linhaAtual == 6 and colAtual == 6:
-        print('CHEGUEI NO PONTO FINAL, NÃO VOU CONTINUAR AQUI !')    
+        print('CHEGUEI NO PONTO FINAL, VOU CONTINUAR AQUI !')    
 
     return mapCaminho    
 

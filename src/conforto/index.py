@@ -11,7 +11,7 @@ class AgenteSistemaConforto(Agent):
         super(AgenteSistemaConforto, self).__init__(aid=aid)
 
         self.comport_request = ComportConforto(self)
-        self.comport_temp = ComportConfortoTemporal(self, 5.0)
+        self.comport_temp = ComportConfortoTemporal(self, 10.0)
         
         self.behaviours.append(self.comport_request)
         self.behaviours.append(self.comport_temp)

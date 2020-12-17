@@ -53,7 +53,7 @@ def __initializeWorld__(sortear):
                 indexesBarricadas.append(tmp)
                 i+=1
     else:
-        indexesBarricadas = [[2,2],[4,3],[6,0]]
+        indexesBarricadas = [[2,2],[6,4],[4,5]]
         indexesBuracos = [[2,0],[2,1],[4,3]]
     # preenchendo a matriz de caminho
     

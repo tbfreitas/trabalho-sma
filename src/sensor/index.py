@@ -12,7 +12,6 @@ class Sensors(Agent):
     def __init__(self, aid, caminho):
 
         super(Sensors, self).__init__(aid=aid)
-        display_message(self.aid.localname, 'Hello World')
         
         self.comport_request = CompRequest(self,caminho)
         self.behaviours.append(self.comport_request)

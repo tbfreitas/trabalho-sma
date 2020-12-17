@@ -31,9 +31,10 @@ class CompRequest2(FipaRequestProtocol):
         disponiveis = json.loads(message.content)
  
         disp = disponiveis['disponiveis']
-        print('valor disponivel' , disp)
+        print('\n====> Agente Autônomo <====')
+        print('Valores disponíveis recebidos pelo sensor:' , disp)
         melhor = decideMelhorCaminho(disp)
-        print('Decidi andar para o ', melhor)
+        print('Decidi andar para o :', melhor, '\n')
         # message_novo.set_content(json.dumps(melhor))
         updateIndex(json.dumps(melhor))
         # display_message(self.agent.aid.localname, message.content)

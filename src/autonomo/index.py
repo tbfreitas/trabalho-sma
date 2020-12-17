@@ -16,7 +16,7 @@ class AgenteSistemaAutonomo(Agent):
         super(AgenteSistemaAutonomo, self).__init__(aid=aid, debug=False)
 
         self.comport_request = CompRequest2(self)
-        self.comport_temp = ComportTemporal(self, 5.0)
+        self.comport_temp = ComportTemporal(self, 10.0)
         
         self.behaviours.append(self.comport_request)
         self.behaviours.append(self.comport_temp)

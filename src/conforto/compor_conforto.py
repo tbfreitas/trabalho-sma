@@ -23,34 +23,36 @@ class ComportConforto(FipaRequestProtocol):
         bur = obstaculos['buracos']
         bar = obstaculos['barricadas']
         
+        print('====> Agente Conforto <====')
         print('Verificando se tem barricada próxima:', bar)
         if not bar:
-            print("=>Não tem barricada próxima, portanto:")
+            print("  Não tem barricada próxima, portanto:")
             if self.arCondicionado == False:
-                print("==>Ar condicionado continuará desligado")
+                print("    Ar condicionado continuará desligado")
             else:
-                print("==> Desligando o ar condicionado")
+                print("    Desligando o ar condicionado")
         else:
-            print("=>Opa, tem barricada próxima, portanto:")
+            print("  Opa, tem barricada próxima, portanto:")
             if self.arCondicionado == True:
-                 print("==> Ar condicionado continuará ligado ")
+                 print("    Ar condicionado continuará ligado ")
             else:
-                print("==> Ligando o ar condicionado")
+                print("    Ligando o ar condicionado")
 
-        print('Verificando se tem buraco próximo: ', bar)
+        print('\nVerificando se tem buraco próximo: ', bur)
         if not bur:
-            print("=>Não tem buraco próximo, portanto:")
+            print("  Não tem buraco próximo, portanto:")
             if self.janelaAberta == False:
-                print("==>Abrindo a janela.")
+                print("    Abrindo a janela.")
             else:
-                print("==>Janela continuará aberta.")
+                print("    Janela continuará aberta.")
         else:
-            print("=>Opa, buraco próximo, portanto:")
+            print("  Opa, buraco próximo, portanto:")
             if self.janelaAberta == False:
-                 print("==>Janela continuará fechada")
+                 print("    Janela continuará fechada")
             else:
-                print("==>Fechando a janela...")
-                    
+                print("    Fechando a janela...")
+
+        print("\n")
         if bar:
             self.arCondicionado = True
         else:
